@@ -1,51 +1,51 @@
-# Python Chatbot
+# Python 聊天機器人
 
-This is a simple Python chatbot that uses the OpenAI API to generate responses based on user input. The chatbot can perform basic file operations such as creating, reading, and renaming files in the current directory.
+這是一個簡單的 Python 聊天機器人，使用 OpenAI API 根據使用者輸入生成回應。該聊天機器人可以執行基本的檔案操作，例如在當前目錄中創建、讀取和重新命名檔案。
 
-## Prerequisites
+## 前置需求
 
-Before running the chatbot, make sure you have the following:
+在運行聊天機器人之前，請確保擁有以下內容：
 
-- Python 3.x installed
-- OpenAI API key
+- 安裝 Python 3.x
+- OpenAI API 金鑰
 
-## Installation
+## 安裝
 
-1. Clone the repository or download the source code.
-2. Install the required dependencies by running the following command:
+1. 克隆存儲庫或下載源代碼。
+2. 通過運行以下命令安裝所需的依賴項：
 
    ```
    pip install openai
    ```
 
-3. Set your OpenAI API key as an environment variable. You can obtain your API key from the OpenAI website.
+3. 將 OpenAI API 金鑰設置為環境變量。您可以從 OpenAI 網站獲取 API 金鑰。
 
    ```
-   export OPENAI_API_KEY=your-api-key
+   export OPENAI_API_KEY=您的 API 金鑰
    ```
 
-## Usage
+## 使用方法
 
-1. Run the chatbot script by executing the following command:
+1. 通過執行以下命令運行聊天機器人腳本：
 
    ```
    python chatbot.py
    ```
 
-2. The chatbot will greet you and wait for your input.
+2. 聊天機器人將向您問候並等待您的輸入。
 
-3. Enter your message or command. The chatbot will generate a response based on the input.
+3. 輸入您的訊息或指令。聊天機器人將根據輸入生成回應。
 
-4. You can use the following commands to interact with the chatbot:
+4. 您可以使用以下指令與聊天機器人互動：
 
-   - `create file named <filename>`: Creates a file with the specified name and generates its content.
-   - `read files`: Lists all the files in the current directory.
-   - `read file <filename>`: Reads the content of the specified file.
-   - `rename <old_filename> to <new_filename>`: Renames a file from the old name to the new name.
-   - `delete cache`: Clears the chatbot's cache.
+   - `創建檔案，名為<檔案名>`：創建具有指定名稱的檔案並生成其內容。
+   - `讀取檔案列表`：列出當前目錄中的所有檔案。
+   - `讀取檔案，名為<檔案名>`：讀取指定檔案的內容。
+   - `將<舊檔案名>重新命名為<新檔案名>`：將檔案從舊名稱重新命名為新名稱。
+   - `刪除快取`：清除聊天機器人的快取。
 
-5. To exit the chatbot, type `exit`, `bye`, or `quit`.
+5. 要退出聊天機器人，輸入 `exit`、`bye` 或 `quit`。
 
-## License
+## 授權
 
-This project is licensed under the [MIT License](LICENSE).
+本項目採用 [MIT 授權](LICENSE)。
