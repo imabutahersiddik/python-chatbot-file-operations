@@ -19,13 +19,13 @@ def generate_content(prompt):
     return content
 
 def create_file(file_name):
-    content = generate_content(f"Create a file named {file_name} with the following content:\n")
+    content = generate_content(f"創建名為 {file_name} 的檔案，內容如下：\n")
     try:
         with open(file_name, "w") as file:
             file.write(content)
-        print(f"File '{file_name}' created and saved successfully in the current directory!")
+        print(f"檔案 '{file_name}' 成功創建並保存在當前目錄中！")
     except Exception as e:
-        print(f"Error creating the file '{file_name}' in the current directory. {str(e)}")
+        print(f"在當前目錄中創建檔案 '{file_name}' 時發生錯誤。{str(e)}")
 
 def read_files():
     files = glob.glob("*")
@@ -37,63 +37,63 @@ def read_file(file_name):
             content = file.read()
         return content
     except Exception as e:
-        print(f"Error reading the file '{file_name}'. {str(e)}")
+        print(f"讀取檔案 '{file_name}' 時發生錯誤。{str(e)}")
         return ""
 
 def rename_file(old_name, new_name):
     try:
         os.rename(old_name, new_name)
-        print(f"File '{old_name}' renamed to '{new_name}' successfully!")
+        print(f"檔案 '{old_name}' 成功重新命名為 '{new_name}'！")
     except Exception as e:
-        print(f"Error renaming the file. {str(e)}")
+        print(f"重新命名檔案時發生錯誤。{str(e)}")
 
 cache = {}
 
 def handle_command(command):
-    if command.startswith("create file named"):
-        file_name = command.split("create file named ")[1]
+    if command.startswith("創建檔案，名為"):
+        file_name = command.split("創建檔案，名為")[1]
         create_file(file_name)
-        return f"File '{file_name}' created successfully in the current directory!"
-    elif command.startswith("read files"):
+        return f"檔案 '{file_name}' 成功在當前目錄中創建！"
+    elif command.startswith("讀取檔案列表"):
         files = read_files()
         cache["files"] = files
-        return f"Files in the current directory:\n{files}"
-    elif command.startswith("read file"):
-        file_name = command.split("read file ")[1]
+        return f"當前目錄中的檔案：\n{files}"
+    elif command.startswith("讀取檔案，名為"):
+        file_name = command.split("讀取檔案，名為")[1]
         if "files" in cache and file_name in cache["files"]:
             return read_file(file_name)
         else:
-            return "The file is not found in the cache. Please use the 'read files' command to populate the cache."
-    elif command.startswith("rename"):
-        old_name, new_name = command.split("rename ")[1].split(" to ")
+            return "該檔案未在快取中找到。請使用 '讀取檔案列表' 指令填充快取。"
+    elif command.startswith("將"):
+        old_name, new_name = command.split("將")[1].split("重新命名為")
         rename_file(old_name, new_name)
-        return f"File '{old_name}' renamed to '{new_name}' successfully!"
-    elif command.startswith("delete cache"):
+        return f"檔案 '{old_name}' 成功重新命名為 '{new_name}'！"
+    elif command.startswith("刪除快取"):
         cache.clear()
-        return "Cache cleared successfully!"
+        return "快取已成功清除！"
     else:
-        return "Invalid command. Please try again."
+        return "無效的指令。請重試。"
 
 def generate_response(prompt):
     response = generate_content(prompt)
     return response
 
 def chat():
-    print("\nHi! My name is AI. How can I assist you today?")
+    print("\n嗨！我是 AI。有什麼可以幫助您的？")
     while True:
         user_input = input("> ")
-        if user_input.lower() in ["exit", "bye", "quit"]:
-            print("Goodbye!")
+        if user_input.lower() in ["退出", "再見", "結束"]:
+            print("再見！")
             break
         else:
             response = generate_response(user_input)
             print(response)
 
-            if "create file named" in user_input or "rename" in user_input or "read files" in user_input or "delete cache" in user_input:
+            if "創建檔案，名為" in user_input or "將" in user_input or "讀取檔案列表" in user_input or "刪除快取" in user_input:
                 print(handle_command(user_input))
 
-            with open("conversation_logs.json", "a") as f:
-                data = {"input": user_input, "response": response, "timestamp": time.time()}
+            with open("對話記錄.json", "a") as f:
+                data = {"輸入": user_input, "回應": response, "時間戳記": time.time()}
                 f.write(json.dumps(data) + "\n")
 
 if __name__ == '__main__':

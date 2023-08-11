@@ -29,7 +29,7 @@ Before running the chatbot, make sure you have the following:
 1. Run the chatbot script by executing the following command:
 
    ```
-   python chatbot.py
+   python chatbot_en.py
    ```
 
 2. The chatbot will greet you and wait for your input.
